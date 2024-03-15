@@ -12,15 +12,34 @@ public class TestArrayList {
         	 System.out.println("El programa se ejecuto sin parametros");
         	 return;
 		 }
-		 List<Integer> arr = new ArrayList<Integer>();
+		 // Inciso a, b, c
+		 /*List<Integer> arr = new ArrayList<Integer>();
 		 for(String i: args) {
 			 arr.add(Integer.parseInt(i));
 		 }
 		 arr.stream().forEach(i -> System.out.println("Numero: "+i));;
+		 ArrayList:
+
+			Es más eficiente para acceder a elementos por índice, ya que almacena los elementos en un arreglo dinámico y el acceso por índice es de complejidad O(1).
+			La inserción y eliminación de elementos al final de la lista (o cerca de ella) es rápida, pero puede ser costosa si se insertan o eliminan elementos 
+			en posiciones intermedias, ya que puede requerir reorganizar los elementos en el arreglo interno.
+			LinkedList:
+			
+			Es más eficiente para la inserción y eliminación de elementos en el medio de la lista, ya que no requiere reorganizar la estructura de datos. 
+			Sin embargo, el acceso por índice es menos eficiente (de complejidad O(n)), 
+			ya que necesita recorrer la lista desde el principio o desde el final hasta la posición deseada.
+			*/
 		 
-		 incisod();
+		 // Inciso D
+		 //incisod();
+		 
+		 //Inciso F
+		 /*
 		 System.out.print("Es capicua?: ");
 		 System.out.println(esCapicua(arr) ? "Si" : "No");
+		 */
+		 
+		 //Inciso G
 	}
 	
 	private static void incisod() {
@@ -69,7 +88,18 @@ public class TestArrayList {
 	}
 	
 	public static boolean esCapicua(List<Integer> lista) {
-		boolean par = Math.floorMod(lista.size(), 2) == 0;
+		int inicio = 0;
+        int fin = lista.size() - 1;
+
+        while (inicio < fin) {
+            if (!lista.get(inicio).equals(lista.get(fin))) {
+                return false;
+            }
+            inicio++;
+            fin--;
+        }
+        return true;
+		/*boolean par = Math.floorMod(lista.size(), 2) == 0;
 		if(!par) {
 			int mitad_length = lista.size() / 2;
 			int[] primer = new int[mitad_length];
@@ -91,7 +121,7 @@ public class TestArrayList {
 			}
 			return ok;
 		}
-		return false;
+		return false;*/
 	}
 	
 	private static void ImprimirLista(List<Estudiante> l) {
