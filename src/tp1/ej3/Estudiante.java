@@ -54,5 +54,8 @@ public class Estudiante {
 		this.direccion = direccion;
 	}
 	
-	
+    public String tusDatos() {
+        return "Estudiante: Nombre=" + nombre + ", Apellido=" + apellido + ", Comision=" + comision +
+                ", Email=" + email + ", Direccion=" + direccion;
+    }
 }

@@ -54,4 +54,8 @@ public class Profesor {
 		this.facultad = facultad;
 	}
 
+	public String tusDatos() {
+        return "Profesor: Nombre=" + nombre + ", Apellido=" + apellido + ", Catedra=" + catedra +
+                ", Email=" + email + ", Facultad=" + facultad;
+    }
 }

@@ -47,5 +47,15 @@ public class Test {
 		arr_profesores[0] = p1;
 		arr_profesores[1] = p2;
 		arr_profesores[2] = p3;
+		
+		System.out.println("Imprimiendo alumnos");
+		for(Estudiante e : arr_estudiantes) {
+			System.out.println(e.tusDatos());
+		}
+		
+		System.out.println("Imprimiendo profesores");
+		for(Profesor p : arr_profesores) {
+			System.out.println(p.tusDatos());
+		}
 	}
 }
