@@ -1,0 +1,20 @@
+a. ¿En qué casos ArrayList ofrece un mejor rendimiento que LinkedList?
+El array List provee un implementación escalable referido a las listatas. Es más eficiente cuando se llaman a gets y sets, tomando un tiempo constante.
+b. ¿Cuándo LinkedList puede ser más eficiente que ArrayList?
+Es más eficiente en el sentido de inserción de nuevos items y eliminación de ya existentes, todo lo referido a agregar o eliminar, ya que se conoce la posición de los elementos, siendo muy barato en acceso
+c. ¿Qué diferencia encuentra en el uso de la memoria en ArrayList y LinkedList?
+    ArrayList: Internamente, un ArrayList utiliza un arreglo dinámico para almacenar sus elementos. Cuando se crea un ArrayList, se asigna un cierto tamaño inicial al arreglo interno. Si el tamaño del arreglo no es suficiente para almacenar todos los elementos, se realiza una expansión del arreglo (generalmente se duplica su tamaño) para acomodar más elementos. Esto implica que el ArrayList puede desperdiciar algo de memoria si reserva más espacio del que necesita en un momento dado, pero el acceso a elementos por índice es más eficiente, ya que se puede acceder directamente a cualquier posición del arreglo.
+
+    LinkedList: Por otro lado, un LinkedList utiliza nodos enlazados para almacenar sus elementos. Cada nodo contiene una referencia al siguiente nodo en la lista. Esto significa que no hay un almacenamiento contiguo de elementos en memoria, sino que cada elemento puede estar ubicado en una posición diferente de la memoria. Aunque esto puede consumir más memoria debido a las referencias adicionales necesarias para enlazar los nodos, permite una inserción y eliminación eficiente de elementos en cualquier posición de la lista, ya que no se requiere reorganizar la estructura de datos.
+d. ¿En qué casos sería preferible usar un ArrayList o un LinkedList?
+En cuanto a cuándo es preferible usar uno u otro:
+
+    ArrayList:
+        Se prefiere cuando se necesita un acceso rápido a elementos por índice.
+        Es adecuado para situaciones en las que el tamaño de la lista no varía significativamente o se conoce de antemano.
+        Es más eficiente para operaciones que implican acceso aleatorio, como búsqueda o acceso por índice.
+
+    LinkedList:
+        Se prefiere cuando se necesita una inserción y eliminación eficiente de elementos, especialmente en el medio de la lista.
+        Es útil cuando el tamaño de la lista varía frecuentemente o no se conoce de antemano.
+        Es más adecuado para operaciones que implican inserción o eliminación en el medio de la lista, ya que no requiere reorganizar la estructura de datos.
