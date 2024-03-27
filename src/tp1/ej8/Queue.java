@@ -1,17 +1,16 @@
 package tp1.ej8;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Queue<T> extends Sequence{
-	private List<T> data;
+	private List<T> data = new LinkedList<T>();
 	public Queue() {
 		super();
 	}
 	
 	public void enqueue(T dato) {
-		data.add(dato);
+			this.data.add(dato);
 	}
 	
 	@Override
