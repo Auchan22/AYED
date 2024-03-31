@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Queue<T> extends Sequence{
-	private List<T> data = new LinkedList<T>();
+	protected List<T> data = new LinkedList<T>();
 	public Queue() {
 		super();
 	}

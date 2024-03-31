@@ -63,6 +63,18 @@ public class BinaryTree <T> {
 		return (!this.hasLeftChild() && !this.hasRightChild());
 
 	}
+	
+	public void imprimirPreOrder(BinaryTree<Integer> a) {
+
+			System.out.println(a.getData());
+		
+		if(a.hasLeftChild()) {
+			imprimirPreOrder(a.getLeftChild());
+		}
+		if(a.hasRightChild()) {
+			imprimirPreOrder(a.getRightChild());
+		}
+	}
 		
 	public boolean hasLeftChild() {
 		return this.leftChild!=null;
