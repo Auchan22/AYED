@@ -45,5 +45,6 @@ public class TestParcialArboles {
 
         ParcialArboles p = new ParcialArboles();
         System.out.println("Es prefijo?:"+p.esPrefijo(a65_2, a65_1));
+        System.out.println("Es prefijo?:"+p.esPrefijoRecursive(a65_2, a65_1));
     }
 }
