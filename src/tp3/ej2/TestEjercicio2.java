@@ -24,11 +24,12 @@ public class TestEjercicio2 {
         System.out.println("AlturaMax=" + a.altura());
         System.out.println("Ancho=" + a.ancho());
         System.out.println("Nivel=" + a.nivel(9));
-        /*System.out.println("ES ANCESTRO 11 DE 2:" + a.esAncestro(11, 2));
+        System.out.println("ES ANCESTRO 11 DE 2:" + a.esAncestro(11, 2));
         System.out.println("ES ANCESTRO 2 DE 11:" + a.esAncestro(2, 11));
         System.out.println("ES ANCESTRO 11 DE 21:" + a.esAncestro(11, 21));
-        System.out.println("ES ANCESTRO 21 DE 11:" + a.esAncestro(21, 11));*/
-        
+        System.out.println("ES ANCESTRO 3 DE 32:" + a.esAncestro(3, 32));
+        System.out.println("ES ANCESTRO 7 DE 22:" + a.esAncestro(7, 22));
+
         /*
          * 
          *            11

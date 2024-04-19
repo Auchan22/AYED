@@ -64,15 +64,38 @@ public class BinaryTree <T> {
 
 	}
 	
-	public void imprimirPreOrder(BinaryTree<Integer> a) {
+	public void imprimirPreOrder(BinaryTree<T> a) {
 
-			System.out.println(a.getData());
+		System.out.println(a.getData());
 		
 		if(a.hasLeftChild()) {
 			imprimirPreOrder(a.getLeftChild());
 		}
 		if(a.hasRightChild()) {
 			imprimirPreOrder(a.getRightChild());
+		}
+	}
+
+	public void imprimirPosOrder(BinaryTree<T> a) {
+		if(a.hasLeftChild()) {
+			imprimirPosOrder(a.getLeftChild());
+		}
+		if(a.hasRightChild()) {
+			imprimirPosOrder(a.getRightChild());
+		}
+
+		System.out.println(a.getData());
+	}
+
+	public void imprimirInOrder(BinaryTree<T> a) {
+		if(a.hasLeftChild()) {
+			imprimirInOrder(a.getLeftChild());
+		}
+
+		System.out.println(a.getData());
+
+		if(a.hasRightChild()) {
+			imprimirInOrder(a.getRightChild());
 		}
 	}
 		

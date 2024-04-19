@@ -134,4 +134,50 @@ public class GeneralTree<T>{
 			return max;
 		}
 	}
+
+	public boolean esAncestro(T a, T b) throws Exception {
+		if(this.isEmpty()){
+			return false;
+		}else{
+			GeneralTree<T> padre = findPadre(this, a);
+			if(padre != null){
+				return findHijo(padre, b);
+			}else{
+				return false;
+			}
+		}
+	}
+
+	private GeneralTree<T> findPadre(GeneralTree<T> arbol, T a){
+		if(arbol.getData().equals(a)){
+			return arbol;
+		}else{
+			List<GeneralTree<T>> children = arbol.getChildren();
+			for(GeneralTree<T> child: children){
+				GeneralTree<T> result = findPadre(child, a);
+				if(result != null){
+					return  result;
+				}
+			}
+		}
+		return null;
+	}
+
+	private boolean findHijo(GeneralTree<T> padre, T b) throws Exception {
+		Queue<GeneralTree<T>> cola = new Queue<GeneralTree<T>>();
+		GeneralTree<T> ag;
+		cola.enqueue(padre);
+		while(!cola.isEmpty()){
+			ag = cola.dequeue();
+			if(ag.getData().equals(b)){
+				return true;
+			}else{
+				List<GeneralTree<T>> children = ag.getChildren();
+				for(GeneralTree<T> child: children){
+					cola.enqueue(child);
+				}
+			}
+		}
+		return false;
+	}
 }
