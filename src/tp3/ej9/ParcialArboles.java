@@ -2,6 +2,9 @@ package tp3.ej9;
 
 import tp3.ejercicio1.GeneralTree;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class ParcialArboles {
 
 
@@ -9,22 +12,25 @@ public class ParcialArboles {
         if(arbol.isEmpty()){
             return false;
         }else{
-            return helperSeleccion(arbol, Integer.MAX_VALUE);
+            return helperSeleccion(arbol);
         }
     }
 
-    private static boolean helperSeleccion(GeneralTree<Integer> a, int minAnt){
-        if (a.hasChildren()) {
-            int padre = a.getData();
-            boolean resultadoHijos = true; // Inicialmente asumimos que los hijos cumplen las condiciones
-            for (GeneralTree<Integer> child : a.getChildren()) {
-                minAnt = Math.min(minAnt, child.getData());
-                if(padre != minAnt) return false;
-                resultadoHijos = resultadoHijos && helperSeleccion(child, child.getData()); // Operación lógica con el resultado de los hijos
+    private static boolean helperSeleccion(GeneralTree<Integer> a){
+        if (a.isLeaf()) {
+          return true; //Se asume que los hijos siempre seran de seleccion
+        }else{
+            Integer min = Integer.MAX_VALUE;
+            boolean ok = true; // Inicialmente asumimos que los hijos cumplen las condiciones
+            List<GeneralTree<Integer>> children = a.getChildren();
+            Iterator<GeneralTree<Integer>> iterator = children.iterator();
+            while((iterator.hasNext()) && ok){
+                GeneralTree<Integer> child = iterator.next();
+                min = Math.min(min, child.getData());
+                ok = helperSeleccion(child);
             }
-            return resultadoHijos; // Devolver el resultado lógico de los hijos
-        }
 
-        return true; // Si no hay hijos, entonces este nodo es un nodo de selección
+            return ((min.equals(a.getData())) && (ok)); // Devolver el resultado lógico de los hijos
+        }
     }
 }

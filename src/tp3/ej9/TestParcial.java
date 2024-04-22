@@ -12,7 +12,7 @@ public class TestParcial {
         children33.add(new GeneralTree<Integer>(35));
         children33.add(new GeneralTree<Integer>(83));
         children33.add(new GeneralTree<Integer>(90));
-        children33.add(new GeneralTree<Integer>(33));
+        children33.add(new GeneralTree<Integer>(40));
 
         List<GeneralTree<Integer>> children12 = new LinkedList<>();
         children12.add(new GeneralTree<>(14));
