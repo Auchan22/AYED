@@ -1,4 +1,6 @@
-# Ejercicio 1
+## Ejercicio 1
+
+---
 ### Inciso a: tabla de tiempos de ejecución
 
 | N° cuentas (y consultas) | procesarMovimientos | procesarMovimientosOptimizado |
@@ -23,6 +25,34 @@ xychart-beta
     y-axis "N° de Cuentas (y consultas)" 1000 --> 100000
     line [1000, 10000, 25000, 50000, 100000]
 ```
-
+---
 ### Inciso b
+Si bien el arreglo de consultas se recorre una vez, es decir n = ``consultas.length``,
+el arreglo de cuentas se recorre j veces, siendo j el numero de consultas que haya, llegando a tener un orden, dependiendo de n * m.
+!! Conultar
+---
+### Incico c
+La mejora en la eficiencia viene dada por el recorrido de n, o ``consultas.length``, y j, o ``cuentas.length``.
+Es decir, no son ``for`` anidados como el caso anterior, por lo que esta función tiene un orden lineal
+O(n+j).
 
+---
+
+## Ejercicio 2
+
+---
+
+| N       | Lineal | Dicotómica |
+|---------|--------|------------|
+| 100.000 | 2      | 0          |
+| 200.000 | 3      | 0          |
+| 300.000 | 3      | 0          |
+| 400.000 | 4      | 0          |
+| 500.000 | 5      | 0          |
+| 600.000 | 7      | 0          |
+
+---
+
+## Ejercicio 3
+
+---
