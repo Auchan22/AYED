@@ -15,7 +15,7 @@ public class Parcial {
             Vertex<Ciudad> o = this.buscarCiudad(ciudades, origen);
             Vertex<Ciudad> d = this.buscarCiudad(ciudades, destino);
             if(o != null && d != null){
-                this.resolver(ciudades, o, d, pasandoPor,camino, 0, new boolean[ciudades.getSize()]);
+                this.resolver(ciudades, o, d, pasandoPor,camino, new boolean[ciudades.getSize()]);
             }
         }
         return camino;
@@ -36,13 +36,16 @@ public class Parcial {
         return res;
     }
 
-    private boolean resolver(Graph<Ciudad> c, Vertex<Ciudad> o, Vertex<Ciudad> d, List<Ciudad> pasandoPor, List<Ciudad> l, int cant, boolean[] marcas){
+    private boolean resolver(Graph<Ciudad> c, Vertex<Ciudad> o, Vertex<Ciudad> d, List<Ciudad> pasandoPor, List<Ciudad> l, boolean[] marcas){
         boolean encontre = false;
         l.add(o.getData());
         marcas[o.getPosition()] = false;
         if(o == d){
             encontre = true;
-//            encontre = pasandoPor.indexOf(o) != -1;
+            Iterator<Ciudad> it = pasandoPor.iterator();
+            while(it.hasNext() && encontre){
+                encontre = l.contains(it.next());
+            }
             return encontre;
         }else{
             List<Edge<Ciudad>> ady = c.getEdges(o);
@@ -51,14 +54,15 @@ public class Parcial {
                 Vertex<Ciudad> v = it.next().target();
                 int pos = v.getPosition();
                 if(!marcas[pos] && !encontre){
-                    encontre = resolver(c,v, d, pasandoPor, l, cant-1, marcas);
+                    encontre = resolver(c,v, d, pasandoPor, l, marcas);
+                    if(!encontre){
+                        marcas[o.getPosition()] = false;
+                        l.remove(l.size()-1);
+                    }
                 }
             }
         }
-        if(!encontre){
-            marcas[o.getPosition()] = false;
-            l.remove(l.size()-1);
-        }
+
         return encontre;
     }
 
