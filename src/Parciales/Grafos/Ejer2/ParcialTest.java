@@ -60,7 +60,7 @@ public class ParcialTest {
         ciudades.connect(Navarro,Lobos);
         ciudades.connect(Lobos,Navarro);
 
-        Parcial parcial = new Parcial();
+        Parcial2 parcial = new Parcial2();
 
         List<Ciudad> pasandoPor = new LinkedList<>();
         pasandoPor.add(Quilmes.getData());

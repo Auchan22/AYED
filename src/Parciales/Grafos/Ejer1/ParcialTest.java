@@ -61,9 +61,9 @@ public class ParcialTest {
         ciudades.connect(Navarro,Lobos);
         ciudades.connect(Lobos,Navarro);
 
-        Parcial parcial = new Parcial();
+        Parcial2 parcial = new Parcial2();
 
-        List<Ciudad> lis = parcial.resolver(ciudades, "La Plata", "Carlos Keen");
+        List<Ciudad> lis = parcial.resolver(ciudades, "La Plata", "Lobos");
         for(Ciudad c : lis){
             System.out.println(c.getNombre());
         }
