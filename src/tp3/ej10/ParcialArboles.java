@@ -15,11 +15,14 @@ public class ParcialArboles {
 
     private static void helperResolver(GeneralTree<Integer> a, List<Integer> camAct, List<Integer> camMax, int nivel, int max, int valorTotal){
         int datoActual = a.getData();
-        valorTotal += datoActual*nivel;
-        if(!a.isLeaf()){
+        boolean ok = datoActual == 1;
+        if(ok) { // Si el dato es 1, lo agrego a la lista y sumarizo el valorTotal
+        	valorTotal += datoActual*nivel;
+        	camAct.add(datoActual*nivel);
+        }
+        if(!a.isLeaf()){ //Es un recorrido para encontrar la lista maxima, pero con valor, no por tamaño como en el 7
             for(GeneralTree<Integer>h: a.getChildren()) {
-                helperResolver(h, camAct, camMax, nivel+1, max, valorTotal);
-
+                helperResolver(h, camAct, camMax, nivel++, max, valorTotal);
             }
         }else if (valorTotal > max) {
             max = valorTotal;
@@ -27,7 +30,7 @@ public class ParcialArboles {
             camMax.removeAll(camMax);
             camMax.addAll(camAct);
         }
-        //camAct.remove(camAct.size()-1);
+        if(ok) camAct.remove(camAct.size()-1);
     }
 
     public static void main(String[] args){
