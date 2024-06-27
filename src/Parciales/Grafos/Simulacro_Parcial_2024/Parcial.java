@@ -13,55 +13,65 @@ public class Parcial {
         List<String> camino = new LinkedList<>();
 
         if(!mapa.isEmpty()){
-            Vertex<Ciudad> v = this.buscar(mapa, ciudad);
-            if(v != null){
-                List<String> l = new LinkedList<>();
-                this.resolver(mapa, v, cantDiasVacas, camino, l, new boolean[mapa.getSize()]);
+            Vertex<Ciudad> o = this.buscar(mapa, ciudad);
+            if(o!= null && o.getData().getCantDias() <= cantDiasVacas){
+                this.resolver2(mapa, o, camino, new LinkedList<String>(), cantDiasVacas-o.getData().getCantDias(), new boolean[mapa.getSize()]);
             }
         }
 
         return camino;
     }
 
-    private Vertex<Ciudad> buscar(Graph<Ciudad> m, String c){
-        List<Vertex<Ciudad>> vertices = m.getVertices();
-        Iterator<Vertex<Ciudad>> it = vertices.iterator();
-        boolean encontre = false;
+    private void resolver(Graph<Ciudad> grafo, Vertex<Ciudad> o, List<String> camMax, List<String> camAct, int cantDias, boolean[] marcas){
+        marcas[o.getPosition()] = true;
+        camAct.add(o.getData().getNombre());
+        if(cantDias == 0 && camAct.size() > camMax.size()){
+            camMax.clear();
+            camMax.addAll(camAct);
+        }else{
+            List<Edge<Ciudad>> ady = grafo.getEdges(o);
+            for(Edge<Ciudad> e: grafo.getEdges(o)){
+                Vertex<Ciudad> v = e.target();
+                int pos = v.getPosition();
+                if(!marcas[pos] && cantDias >= v.getData().getCantDias()){
+                    this.resolver(grafo, v, camMax, camAct, cantDias - v.getData().getCantDias(), marcas);
+                }
+            }
+        }
+        marcas[o.getPosition()] = false;
+        camAct.remove(camAct.size() - 1);
+    }
+
+    private void resolver2(Graph<Ciudad> grafo, Vertex<Ciudad> o, List<String> camMax, List<String> camAct, int cantDias, boolean[] marcas){
+        marcas[o.getPosition()] = true;
+        camAct.add(o.getData().getNombre());
+        List<Edge<Ciudad>> ady = grafo.getEdges(o);
+        for(Edge<Ciudad> e: grafo.getEdges(o)){
+            Vertex<Ciudad> v = e.target();
+            int pos = v.getPosition();
+            if(!marcas[pos] && cantDias >= v.getData().getCantDias()){
+                this.resolver(grafo, v, camMax, camAct, cantDias - v.getData().getCantDias(), marcas);
+            }
+        }
+        if(cantDias == 0 && camAct.size() > camMax.size()){
+            camMax.clear();
+            camMax.addAll(camAct);
+        }
+        marcas[o.getPosition()] = false;
+        camAct.remove(camAct.size() - 1);
+    }
+
+    private Vertex<Ciudad> buscar(Graph<Ciudad> grafo, String n){
         Vertex<Ciudad> res = null;
-        while(it.hasNext() && !encontre){
-            Vertex<Ciudad> aux = it.next();
-            if(aux.getData().getNombre().equals(c)){
-                encontre = true;
-                res = aux;
+
+        Iterator<Vertex<Ciudad>> it = grafo.getVertices().iterator();
+        while(it.hasNext() && res == null){
+            Vertex<Ciudad> v = it.next();
+            if(v.getData().getNombre().equals(n)){
+                res = v;
             }
         }
 
         return res;
-    }
-
-    private void resolver(Graph<Ciudad> m, Vertex<Ciudad> o, int cantDias, List<String> camMax, List<String> camActual, boolean[] marcas){
-        marcas[o.getPosition()] = true;
-        camActual.add(o.getData().getNombre());
-        cantDias-=o.getData().getDias();
-        if(cantDias >= 0 && camActual.size() > camMax.size()){
-            camMax.clear();
-            camMax.addAll(camActual);
-        }
-        if (cantDias > 0){
-            List<Edge<Ciudad>> adyacencias = m.getEdges(o);
-            Iterator<Edge<Ciudad>> it = adyacencias.iterator();
-            while(it.hasNext()){
-                Edge<Ciudad> aux = it.next();
-                int pos = aux.target().getPosition();
-                int dias = aux.target().getData().getDias();
-                //System.out.println(o.getData().getNombre()+"|"+aux.target().getData().getNombre());
-                if(!marcas[pos] && cantDias - dias > 0 ){
-                    resolver(m, aux.target(), cantDias - dias, camMax, camActual, marcas);
-                }
-            }
-        }
-        cantDias+=o.getData().getDias();
-        camActual.remove(camActual.size()-1);
-        marcas[o.getPosition()] = false;
     }
 }

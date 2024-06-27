@@ -2,18 +2,18 @@ package Parciales.Grafos.Simulacro_Parcial_2024;
 
 public class Ciudad {
     private String nombre;
-    private int dias;
+    private int cantDias;
 
-    public Ciudad(String nombre, int dias) {
+    public Ciudad(int cantDias, String nombre) {
         this.nombre = nombre;
-        this.dias = dias;
+        this.cantDias = cantDias;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public int getDias() {
-        return dias;
+    public int getCantDias() {
+        return cantDias;
     }
 }
